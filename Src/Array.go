@@ -2,6 +2,17 @@ package main
 
 import "fmt"
 
+/*
+数组是值类型
+数组是值类型传递，调用函数会拷贝数组，与其他语言不一样
+go语言一般不直接数组，也不使用数组的指针；使用切片
+*/
+func printarray(arr [5]int) {
+	for i, v := range arr {
+		fmt.Println(i, v)
+	}
+}
+
 func main() {
 	var array1 [5]int
 	array2 := [3]int{1, 3, 5}
@@ -38,4 +49,15 @@ func main() {
 		}
 		fmt.Println(maxi, maxValue)
 	}
+
+	//求数组value 求和 , 通过_略过变量
+	sum := 0
+	for _, v := range numbers {
+		sum += v
+	}
+	fmt.Println(sum)
+
+	printarray(array3)
+	printarray(array1)
+	//printarray(array2)  数组是值类型 arr 定义是arr[5] 而arr2 是 arr[3]
 }
