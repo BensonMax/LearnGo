@@ -1,52 +1,43 @@
-package main
+package tree
 
 import "fmt"
 
-type treeNode struct {
-	value       int
-	left, right *treeNode
+/*
+面向对象
+1.go语言仅支持封装，不支持继承和多态
+2.go语言没有class，只有struct
+*/
+
+//创建结构体，type指定类型
+type Node struct {
+	Value       int
+	Left, Right *Node
 }
 
-func (node treeNode) print() {
-	fmt.Print(node.value, " ")
+//定义print方法
+func (node Node) Print() {
+	fmt.Print(node.Value, " ")
 }
 
-func createNode(value int) *treeNode {
-	return &treeNode{value: value}
+func CreateNode(value int) *Node {
+	return &Node{Value: value}
 }
 
-func (node *treeNode) setValue(value int) {
+func (node *Node) SetValue(value int) {
 	if node == nil {
-		fmt.Println("Setting value to nil" + "node.Ignored")
+		fmt.Println("Setting Value to nil" + "node.Ignored")
 		return
 	}
-	node.value = value
+	node.Value = value
 }
 
-func (node *treeNode) traverse() {
+//定义Node遍历函数
+func (node *Node) Traverse() {
 	if node == nil {
 		return
 	}
-	node.left.traverse()
-	node.print()
-	node.right.traverse()
+	node.Left.Traverse()
+	node.Print()
+	node.Right.Traverse()
 
-}
-
-func main() {
-	var root treeNode
-	root = treeNode{value: 3}
-	root.left = &treeNode{}
-	root.right = &treeNode{5, nil, nil}
-	root.right.left = new(treeNode)
-	root.left.right = createNode(2)
-	root.right.left.setValue(4)
-	root.traverse()
-
-	nodes := []treeNode{
-		{value: 3},
-		{},
-		{6, nil, &root},
-	}
-	fmt.Println(nodes)
 }
