@@ -17,12 +17,23 @@ func adder() func(int) int {
 	}
 }
 
+func fibonacci() func(int) int {
+	sum := 0
+	return func(x int) int {
+		sum = x
+		return sum
+	}
+}
+
 func main() {
-	pos, neg := adder(), adder()
+	pos, neg, trible := adder(), adder(), adder()
 	for i := 0; i < 10; i++ {
 		fmt.Println(
 			pos(i),
 			neg(-2*i),
+			trible(i*i),
 		)
 	}
+	var k = fibonacci()
+	fmt.Println(k(6))
 }
