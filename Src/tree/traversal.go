@@ -1,5 +1,8 @@
 package tree
 
+/*
+改写遍历方法
+*/
 import "fmt"
 
 func (node *Node) Traversal() {
